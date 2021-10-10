@@ -1,0 +1,147 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'cartStyle.css' %}">
+<!-- Font's Links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    
+<div class="cart_main">
+
+    <h1 class="title">CART</h1>
+    <div class="bottom_bar"></div><br>
+
+    {% if cart %}
+    <div class="cart_section">
+        {% for item in cart %}
+
+        <div class="item">
+            {% if item.product.image %}
+                <img class="cart_img" src="{{item.product.image.url}}" alt="">
+            {% else %}
+                <img class="cart_img" src="{% static 'images/noImg.jpeg' %}" alt="">
+            {% endif %}
+            <p class="item_name">{{item.product.name}}</p>
+            <p class="quantity" >Qt: {{item.quantity}}</p>
+            <a href="" onclick="deleteItem('{{item.product.id}}')" class="delete_item_btn">Remove item</a>
+            <div class="price_section">
+                <p class="price">${{item.product.price}}</p>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+    <div class="tool_bar_section">
+    <a href="{% url 'home' %}" class="add_item_btn">Add products</a>
+        <div class="undo_redo">
+            <!-- <a href="" class="undo_btn">Undo</a>
+            <a href="" class="redo_btn">Redo</a> -->
+        </div>
+        <a href="" onclick="Proceed_order()" class="place_order_bnt">Proceed to checkout</a>
+        <p class="total_items">Total items: {{total_item}}</p>
+        <p class="checkout_total">Checkout total: ${{checkout_total}}</p>
+    </div>
+
+    {% else %}
+
+    <div class="cart_section">
+
+        <div class="item">
+
+            <p class="item_name" style="color: rgb(255, 58, 58); font-weight: bold;">Your cart looks empty &emsp; x_x</p>
+
+        </div>
+    </div>
+    <div class="tool_bar_section">
+        <a href="{% url 'home' %}" class="add_item_btn">Add products</a>
+        <p class="total_items">Total items: 0</p>
+        <p class="checkout_total">Checkout total: $0.00</p>
+    </div>
+    
+    {% endif %}
+
+
+<div class="emailPopUp">
+
+    <h1 class="email_title">Please enter your email to confirm.</h1>
+    <p class="email_p"><b style="color: red; font-size:medium;">! </b> You are not purchasing anything. This site is only for education purpose only. <br>you can still enter your email, and we will email you with the list's of selected items. <br><br>Thank you for trying out this website.</p>
+    <form class="order_submit" action="" method="post">
+        {% csrf_token %}
+        <input class="email" type="email" name="email" id="email" required placeholder="Email"><br>
+        <input class="submit" type="submit" value="Place order">
+    </form>
+    <button onclick="onOrderCancel()" class="cancel">
+        Cancel
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+    function deleteItem(_id){
+        event.preventDefault();
+
+        $.ajax({
+                url: 'delete_item',
+                type: 'GET',
+                data: {
+                    product_id:_id
+                },
+
+                success: function(response){
+                    document.location.reload();
+                }
+            })}
+
+        function Proceed_order(){
+            event.preventDefault();
+            document.querySelector('.emailPopUp').style.display = 'block';
+        }
+
+        function onOrderCancel(){
+            event.preventDefault();
+            document.querySelector('.emailPopUp').style.display = 'none';
+        }
+
+        $(document).on('submit', '.order_submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: 'order_submit',
+            type: 'POST',
+            data: {
+                email: $('#email').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response){
+                document.location.reload();
+                $('.item_name').style.color = "black";
+
+            }
+
+        })})
+
+        $(document).on('submit', '.order_submit', function(e){
+            e.preventDefault();
+            document.querySelector('*').style.cursor = 'progress';
+            document.querySelector('.email').style.cursor = 'progress';
+            document.querySelector('.email').disabled = true;
+            document.querySelector('.submit').style.cursor = 'not-allowed';
+            document.querySelector('.submit').disabled= true;
+        })
+
+        
+
+</script>
+
+{% endblock content %}

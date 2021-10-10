@@ -1,0 +1,307 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.landing {
+  padding-top: 10px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: #232323;
+}
+
+.title_description {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title_description_container > .title {
+  font-family: "Staatliches", cursive;
+  font-size: 5vmax;
+  color: #bbbbbb;
+  font-weight: 100;
+  text-shadow: black 0px 1px 3px;
+  letter-spacing: 3px;
+}
+
+.title_description_container > .description {
+  font-family: "Staatliches", cursive;
+  font-size: 2vmax;
+  font-weight: 100;
+  color: #817f7f;
+  letter-spacing: 2px;
+}
+
+.bottom_bar {
+  width: 17vmax;
+  height: 7px;
+  background-color: yellow;
+  border-radius: 10px 0px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+}
+.img_poster {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.img_poster > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.start_journey {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+  background-color: rgb(0, 132, 255);
+  font-family: "Overpass", sans-serif;
+  font-weight: 100;
+  font-size: 1.3vmax;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.start_journey:hover {
+  box-shadow: yellow -1px 1px 2px;
+  color: yellow;
+  font-style: italic;
+  cursor: not-allowed;
+}
+
+@keyframes arrowBump {
+  from {
+    bottom: 5px;
+  }
+  to {
+    bottom: 0;
+  }
+}
+
+.arrow {
+  color: white;
+  font-size: 2.5vmax;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  animation: arrowBump 0.3s ease-in-out infinite alternate-reverse;
+  text-shadow: black 1px 1px 2px;
+}
+
+.card_section {
+  background-color: #1b1b1b;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.title_and_description {
+  text-align: center;
+  font-family: "Staatliches", cursive;
+  margin-top: 50px;
+}
+
+.title_and_description > .title {
+  color: rgb(196, 196, 196);
+  font-size: 2.5vmax;
+  font-weight: 100;
+  letter-spacing: 3px;
+  text-shadow: black 1px 1px 2px;
+}
+
+.steps_title {
+  color: rgb(167, 167, 167);
+  font-size: 1.4vmax;
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+
+.title_and_description > .bottom_line {
+  background-color: yellow;
+  width: 17vmax;
+  height: 7px;
+  margin: auto;
+  border-radius: 10px 0px;
+  text-shadow: black 1px 1px 2px;
+}
+
+.title_and_description > .additional_note {
+  color: #787878;
+  font-family: "Overpass", sans-serif;
+  font-size: 1vmax;
+}
+
+.card_section > .card_container {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card_container > .card {
+  width: 300px;
+  height: auto;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: black 1px 1px 3px;
+}
+
+.card > .card_img {
+  width: 300px;
+  height: 260px;
+}
+
+.card_img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9px;
+  pointer-events: none;
+}
+
+.card > .item_name {
+  color: #272727;
+  font-family: "Overpass", sans-serif;
+  font-size: 15px;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.card > .item_description {
+  color: #8d8d8d;
+  font-family: "Overpass", sans-serif;
+  font-size: 10px;
+  padding: 15px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.card > .price_and_buyButton {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.price_and_buyButton > .price {
+  font-family: "Overpass", sans-serif;
+  color: #181818;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.addToCartBTN {
+  padding: 5px 20px;
+  padding-top: 12px;
+  background-color: #0094ff;
+  font-family: "Overpass", sans-serif;
+  border: none;
+  border-radius: 10px;
+  box-shadow: black 1px 1px 1px;
+  font-size: small;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+.card > .terms {
+  font-family: "Overpass", sans-serif;
+  color: #a4a4a4;
+  font-size: x-small;
+  text-align: center;
+  bottom: 0;
+}
+
+.addToCartBTN:hover {
+  background-color: #0051ff;
+  cursor: pointer;
+}
+
+.addToCartBTN:focus {
+  box-shadow: black inset 0px 1px 2px;
+}
+.contact_form > input {
+  width: 280px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: "Overpass", sans-serif;
+  font-size: 0.9rem;
+  border-radius: 14px;
+  border: none;
+  background-color: #e1dfdf;
+  outline: none;
+}
+
+.contact_form > textarea {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 280px;
+  height: 200px;
+  padding: 10px;
+  font-family: "Overpass", sans-serif;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 14px;
+  background-color: #e1dfdf;
+  outline: none;
+}
+
+.contact_form > input:focus {
+  background-color: white;
+}
+.contact_form > textarea:focus {
+  background-color: white;
+}
+
+.contact_form > .submit {
+  background-color: #0094ff;
+  color: white;
+  font-weight: bold;
+}
+
+.contact_form > .submit:hover {
+  box-shadow: white 1px 1px 1px;
+  cursor: pointer;
+  outline: none;
+}
+
+.contact_form > .submit:focus {
+  background-color: rgb(86, 86, 255);
+}
+
+.card_section > .alertMessage {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 50px;
+  background-color: #edeeb8;
+  border-radius: 10px;
+  color: red;
+  border: yellow 2px solid;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Overpass", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+
+.NoItem {
+  font-family: "Staatliches", cursive;
+  color: white;
+  padding: 40px;
+  font-weight: 100;
+  letter-spacing: 2px;
+}

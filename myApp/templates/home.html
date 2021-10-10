@@ -1,0 +1,272 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'homeStyle.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div class="main_content">
+
+<div class="landing" id="landing">
+
+    <div class="title_description">
+        <div class="title_description_container">
+            <h1 class="title">
+            LET'S <br>
+            <div class="bottom_bar"></div>
+            BULK UP!
+            </h1>
+            <div class="bottom_bar"></div>
+            <br>
+            <p class="description">
+                WITH RIGHT NUTRITION'S <i style="color: #BBBBBB;"> AND </i>
+                <br> RIGHT EQUIPMENTS
+            </p>
+            <br>
+            <input class="start_journey" type="submit" value="START JOURNEY">
+        </div>
+
+    </div>
+    <div class="arrow">⌄</div>
+    <div class="img_poster">
+        <img src="{% static 'images/protienCup.jpeg' %}" alt="">
+    </div>
+
+</div>
+
+<!-- --------------------------------------------------- CARD SECTION -->
+<section class="card_section">
+
+<!-- ------------------------------------------   NUTRITION'S SECTION -->
+
+    <div class="title_and_description" id="NUTRITION">
+        <h1 class="title">NUTRITIONS</h1>
+        <div class="bottom_line"></div><br>
+        <h2 class="steps_title">
+            STEP ONE: CHOOSE YOUR RIGHT PROTEIN
+        </h2><br>
+        <p class="additional_note">DIFFERENT FLAVORERS ARE AVAILABLE!</p>
+    </div>
+
+    <div class="card_container">
+        {% if  proteinList %}
+        {% for protein in proteinList %}
+        <div class="card">
+            <div class="card_img">
+                {% if protein.image %}
+                <img src="{{protein.image.url}}" alt="">
+                {% else %}
+                <img src="{% static 'images/noImg.jpeg' %}" alt="">
+                {% endif %}
+
+            </div>
+            <h3 class="item_name">{{protein.name | upper}}</h3>
+            <p class="item_description">{{protein.description}}</p>
+            <div class="price_and_buyButton">
+                <h3 class="price">Price: ${{protein.price}}</h3>
+                <!-- <input class="addToCartBTN" href="{{protein.id}}" type="submit" value="ADD TO CART"> -->
+                <a class="addToCartBTN" onclick="func('{{protein.id}}')">ADD TO CART</a>
+            </div>
+
+            <p class="terms">Terms & conditions apply</p>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h1 class="NoItem">We are sorry but we don't have any protein available</h1>
+        {% endif %}
+
+    </div>
+
+    <br><br><br>
+
+    <!-- ---------------------------------------PRE WORKOUT SECTION -->
+    <div class="title_and_description" id="PRE-WORKOUTS">
+        <h2 class="steps_title">
+            STEP TWO: CHOOSE YOUR RIGHT PRE-WORKOUT
+        </h2><br>
+        <p class="additional_note">DIFFERENT FLAVORERS ARE AVAILABLE!</p>
+    </div>
+
+    <div class="card_container">
+        {% if  preWorkoutList %}
+        {% for preWorkout in preWorkoutList %}
+        <div class="card">
+            <div class="card_img">
+                {% if preWorkout.image %}
+                <img src="{{preWorkout.image.url}}" alt="">
+                {% else %}
+                <img src="{% static 'images/noImg.jpeg' %}" alt="">
+                {% endif %}
+            </div>
+            <h3 class="item_name">{{preWorkout.name | upper}}</h3>
+            <p class="item_description">{{preWorkout.description}}</p>
+            <span class="id" hidden>{{ preWorkout.id }}</span>
+            
+            <div class="price_and_buyButton">
+                <h3 class="price">Price: ${{preWorkout.price}}</h3>
+                <!-- <input class="addToCartBTN" href="{{protein.id}}" type="submit" value="ADD TO CART"> -->
+                <a class="addToCartBTN" onclick="func('{{preWorkout.id}}')">ADD TO CART</a>
+            </div>
+
+            <p class="terms">Terms & conditions apply</p>
+        </div>
+        {% endfor %}
+
+        {% else %}
+        <h1 class="NoItem">We are sorry but we don't have any pre-workouts available</h1>
+        {% endif %}
+    </div>
+
+    <br><br><br>
+
+    <!-- ----------------------------------------- EQUIPMENTS SECTION -->
+    <div class="title_and_description" id="EQUIPMENTS">
+        <h1 class="title">EQUIPMENTS</h1>
+        <div class="bottom_line" style="background-color: red;"></div><br>
+        <h2 class="steps_title">
+            STEP THREE: CHOOSE YOUR RIGHT EQUIPMENTS
+        </h2><br>
+        <p class="additional_note">NEW DROP EACH MONTH</p>
+    </div>
+
+    <div class="card_container">
+        {% if  equipmentList %}
+            {% for equipment in equipmentList %}
+            <div class="card">
+                <div class="card_img">
+                    {% if equipment.image %}
+                    <img src="{{equipment.image.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'images/noImg.jpeg' %}" alt="">
+                    {% endif %}
+                </div>
+                <h3 class="item_name">{{equipment.name | upper}}</h3>
+                <p class="item_description">{{equipment.description}}</p>
+                <span class="id" hidden>{{ protein.id }}</span>
+                <div class="price_and_buyButton">
+                    <h3 class="price">Price: ${{equipment.price}}</h3>
+                    <a class="addToCartBTN" onclick="func('{{equipment.id}}')">ADD TO CART</a>
+                </div>
+
+                <p class="terms">Terms & conditions apply</p>
+            </div>
+            {% endfor %}
+            
+        {% else %}
+            <h1 class="NoItem">We are sorry but we don't have any equipment available</h1>
+        {% endif %}
+    
+    </div>
+    <br><br><br>
+
+    <div class="title_and_description" id="CONTACT_ME">
+        <h1 class="title">ADDITIONAL INFORMATION</h1>
+        <div class="bottom_line" style="background-color: rgb(71, 255, 47); width: 30vmax;"></div><br>
+
+        <p class="additional_note">FOR ADDITIONAL INFORMATION PLEASE CONTACT ME</p>
+
+        <br>
+        <form class="contact_form" action="" method="POST">
+            {% csrf_token %}
+            <input type="text" id="name" name="name" placeholder="NAME" required><br>
+            <input type="tel" id="phone" name="phone" placeholder="PHONE NUMBER" required><br>
+            <input type="email" id="email" name="email" placeholder="EMAIL" required><br>
+            <textarea name="description" id="description" cols="30" rows="10" required placeholder="THE REASON FOR SENDING THIS IS.." minlength="50" maxlength="500"></textarea><br>
+            <input type="submit" class="submit"  value="READY TO SEND IT?">
+        </form>
+
+        
+        <h1 class="thankYou" style="font-family: 'Overpass', sans-serif;
+        color: white;
+        padding: 100px;
+        font-weight: 100;
+        letter-spacing: 2px;
+        font-size: x-large;"></h1>
+
+    </div>
+    
+
+    <div class="alertMessage">
+        note: This website is made for personal knowledge, we do not sale any physical products!  
+    </div>
+
+
+</section>
+
+
+</div>
+
+
+<script>
+
+    function func(id){
+        _id = id;
+    }
+
+    function load() {
+        document.querySelector('*').style.cursor = 'progress';
+        document.querySelector('#name').style.cursor = 'progress';
+        document.querySelector('#email').style.cursor = 'progress';
+        document.querySelector('#phone').style.cursor = 'progress';
+        document.querySelector('#description').style.cursor = 'progress';
+        document.querySelector('.submit').style.cursor = 'not-allowed';
+        document.querySelector('.submit').disabled= true;
+
+        
+    }   
+
+    $(document).ready(function(){
+        $(".addToCartBTN").click(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'add_to_cart',
+                type: 'GET',
+                data: {
+                    product_id:_id
+                },
+                success: function(response){
+                    $('.count').text(response.total_item);
+                }
+            })
+        })
+    })
+    
+    $(document).on('submit', '.contact_form', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: 'contact',
+            type: 'POST',
+            data: {
+                name: $('#name').val(),
+                phone: $('#phone').val(),
+                email: $('#email').val(),
+                description: $('#description').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response){
+                document.querySelector('.contact_form').style.display = "none";
+                $('.thankYou').text(response.message);
+                document.querySelector('*').style.cursor = 'default';
+                document.querySelector('.name').style.cursor = 'default';
+                document.querySelector('.email').style.cursor = 'default';
+                document.querySelector('.phone').style.cursor = 'default';
+                document.querySelector('.description').style.cursor = 'default';
+                document.querySelector('.submit').style.cursor = 'default';
+                
+            }
+        })
+        
+
+    })
+
+    $(document).on('submit', '.contact_form', function(e){
+        e.preventDefault();
+        load()
+    })
+
+
+
+</script>
+
+{% endblock content %}
