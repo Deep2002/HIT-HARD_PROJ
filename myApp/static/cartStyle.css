@@ -157,7 +157,7 @@
 }
 
 .tool_bar_section > p:hover {
-  font-weight: bold;
+  text-shadow: 0.11px 0.11px #1b1b1b;
 }
 
 .quantity {
