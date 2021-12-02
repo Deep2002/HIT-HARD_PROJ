@@ -122,7 +122,7 @@ def sendMeassage(request):
 
         try:
             send_mail("HIT_HARD NEW MESSAGE",
-                      f"You have received new form from HIT-HARD.\n\nName: {name}\nPhone: {phone}\nEmail: {email}\nDescription:\n{description}\n\nDate submitted: {date_submitted}", "dpp4846@gmail.com", ['deepp4846@gmail.com'])
+                      f"You have received new form from HIT-HARD.\n\nName: {name}\nPhone: {phone}\nEmail: {email}\nDescription:\n{description}\n\nDate submitted: {date_submitted}", "noreply.hithard@gmail.com", ['***************'])
 
             send_mail("HIT-HARD FORM SENT",
                       f"Dear {name},\n\nWe have received your form. After reviewing your form, We will contact you shortly to a phone: {phone} or an email: {email} .\n\nDo not reply to this message. \n\n\nThank you,\nHIT-HARD.\n\nDate submitted: {date_submitted}", "dpp4846@gmail.com", [email])
