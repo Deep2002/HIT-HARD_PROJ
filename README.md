@@ -1,4 +1,4 @@
-# HIT-HARD_PROJ
+# HIT-HARD
 
 This project is based on E-commerce website.
 
